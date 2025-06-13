@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SurveilTAP</title>
+    <style>
+      h1 {
+        color: white;
+        margin-top: 20px;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+      }
+
+      .headercaixa {
+        background-color: #5b3774;
+        width: 100%;
+        height: 80px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-left: 20px;
+      }
+
+      .headerlogo {
+        max-height: 80px;
+        margin-right: 20px;
+        position: relative;
+        z-index: 4;
+        transition: transform 0.3s ease;
+      }
+
+      .headerlogo:hover {
+        transform: scale(1.2);
+      }
+
+      .center-button {
+        text-align: center;
+      }
+
+      .primeiro-botao {
+        background-image: url("imagens/botao1.png");
+      }
+
+      .segundo-botao {
+        background-image: url("imagens/botao2.png");
+      }
+
+      .terceiro-botao {
+        background-image: url("imagens/botao3.png");
+      }
+
+      .center-button button {
+        background-repeat: no-repeat;
+        background-size: cover;
+        border: none;
+        padding: 0;
+        width: 235px;
+        height: 335px;
+        display: inline-block;
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out; /* ADICIONE ESTA LINHA */
+      }
+
+      body {
+        background: linear-gradient(to bottom, #251232, #3f2651);
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+        background-attachment: fixed;
+        padding-top: 80px; /* ESSA É A CORREÇÃO */
+      }
+
+      .primeiro-botao:hover {
+        filter: brightness(140%);
+        transform: scale(1.05); /* ADICIONE ESTA LINHA */
+      }
+
+      .segundo-botao:hover {
+        filter: brightness(140%);
+        transform: scale(1.05); /* ADICIONE ESTA LINHA */
+      }
+
+      .terceiro-botao:hover {
+        filter: brightness(140%);
+        transform: scale(1.05); /* ADICIONE ESTA LINHA */
+      }
+
+      .no-link {
+        text-align: center;
+        margin-left: 20px !important;
+        color: white;
+        font-family: Arial;
+      }
+    </style>
+    <style>
+      /* Estilos duplicados de .headercaixa foram removidos para limpeza,
+       a regra correta já está no primeiro bloco <style> */
+
+      .center-buttons {
+        display: flex;
+      }
+
+      .header-button {
+        width: 125px;
+        height: 30px;
+        background-color: transparent;
+        background-size: cover;
+        border: none;
+        margin: 0 5px;
+        cursor: pointer;
+      }
+
+      .carta-botao {
+        background-image: url("imagens/cartasbotao.png");
+      }
+
+      .deck-botao {
+        background-image: url("imagens/decksbotao.png");
+      }
+
+      .deckbuilder-botao {
+        background-image: url("imagens/deckbuilder.png");
+        width: 200px;
+        height: 30px;
+      }
+
+      .art-botao {
+        background-image: url("imagens/artigos.png");
+        width: 125px;
+        height: 30px;
+      }
+
+      .deck-botao:hover {
+        filter: brightness(140%);
+        transition: transform 0.3s ease;
+        transform: scale(1.15);
+      }
+
+      .carta-botao:hover {
+        filter: brightness(140%);
+        transition: transform 0.3s ease;
+        transform: scale(1.15);
+      }
+
+      .deckbuilder-botao:hover {
+        filter: brightness(140%);
+        transition: transform 0.3s ease;
+        transform: scale(1.15);
+      }
+
+      .art-botao:hover {
+        filter: brightness(140%);
+        transition: transform 0.3s ease;
+        transform: scale(1.15);
+      }
+    </style>
+    <style>
+      .quarto-centro {
+        text-align: center;
+      }
+
+      .quarto-centro button {
+        background-image: url("imagens/artigo.png");
+        border: none;
+        padding: 0;
+        width: 600px;
+        height: 500px;
+        display: inline-block;
+        cursor: pointer;
+      }
+    </style>
+    <style>
+      .quarto-botao {
+        position: relative;
+        text-align: center;
+      }
+
+      .quarto-button {
+        background-image: url("imagens/artigo.png");
+        border: none;
+        padding: 0;
+        width: 600px;
+        height: 500px;
+        display: block;
+        cursor: pointer;
+      }
+
+      .button-text {
+        position: absolute;
+        bottom: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #5b3774;
+        color: #ffffff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-family: Arial;
+      }
+    </style>
+    <style>
+      .rectangle {
+        background-color: #5b3774;
+        width: 100%;
+        height: 50px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-family: Arial;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="headercaixa">
+      <img class="headerlogo" src="imagens/logo2.png" alt="SurvelTAP Logo" />
+      <div class="center-buttons">
+        <a href="paginaprocura.html">
+          <button class="header-button carta-botao"></button>
+        </a>
+        <a href="paginadecks.html">
+          <button class="header-button deck-botao"></button>
+        </a>
+        <a href="pagDECKBUILDER.html">
+          <button class="header-button deckbuilder-botao"></button>
+        </a>
+        <a href="artg.html">
+          <button class="header-button art-botao"></button>
+        </a>
+        <a href="login.html">
+          <button class="header-button">Login</button>
+        </a>
+      </div>
+    </div>
+
+    <div class="center-button">
+      <p class="main-para"></p>
+      <a href="paginaprocura.html">
+        <button class="primeiro-botao"></button>
+      </a>
+      <a href="paginadecks.html">
+        <button class="segundo-botao"></button>
+      </a>
+      <a href="pagDECKBUILDER.html">
+        <button class="terceiro-botao"></button>
+      </a>
+    </div>
+
+    <p class="main-para no-link">NOVIDADES MAGIC & MAIS</p>
+    <div class="quarto-centro quarto-botao">
+      <p class="decoy"></p>
+      <a href="artg.html">
+        <button class="quarto-button"></button>
+        <div class="button-text">
+          Fay Dalton pega no flagra! Artista plagia diversas artes e artistas
+          respondem! Clique para ler mais.
+        </div>
+      </a>
+    </div>
+
+    <p>‎</p>
+    <p>‎</p>
+    <p>‎</p>
+    <p>‎</p>
+    <p>‎</p>
+    <p>‎</p>
+    <p>‎</p>
+    <p>‎</p>
+    <p>‎</p>
+    <p>‎</p>
+
+    <script>
+      window.addEventListener("scroll", function () {
+        var square = document.querySelector(".rectangle");
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+          square.style.display = "flex";
+        } else {
+          square.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>

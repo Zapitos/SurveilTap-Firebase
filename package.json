@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "firebase": "^11.9.1",
+    "nodemon": "^3.1.10"
+  },
+  "name": "surveiltap",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

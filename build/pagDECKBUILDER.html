@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deck Builder</title>
+  <style>
+    .header {
+      background-color: #5B3774;
+      width: 100%;
+      height: 80px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 20px;
+    }
+
+    .header-logo {
+      max-height: 80px;
+      margin-right: 20px;
+      position: relative;
+      z-index: 4;
+      transition: transform 0.3s ease;
+    }
+
+    .header-logo:hover {
+      transform: scale(1.2);
+    }
+
+    .header-button {
+      width: 100;
+      height: 75;
+      background-color: transparent;
+      border: none;
+      margin: 0 5px;
+      cursor: pointer;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .header-button.search {
+      background-image: url('imagens/cartasbotao.png');
+      width: 125px;
+      height: 30px;
+
+    }
+
+    .header-button.decks {
+      background-image: url('imagens/decksbotao.png');
+      width: 125px;
+      height: 30px;
+    }
+
+
+    .header-button.deck-builder {
+      position: relative;
+      background-image: url("imagens/deckbuilderCLICK.png");
+      width: 200px;
+      height: 30px;
+    }
+    .header-button.deck-builder::after { 
+      content: "";
+      position: absolute; 
+      top: -25px; 
+      left: -10px; 
+      right: -10px; 
+      bottom: -25px; 
+      background-color: #ca9cec; 
+      border-radius: 5px;
+      z-index: -1; 
+    }
+
+
+    .header-button.articles {
+      background-image: url('imagens/artigos.png');
+      width: auto;
+      height: auto;
+    }
+    
+
+    .centered-content {
+      margin-top: 100px;
+      text-align: center;
+    }
+
+    .search-buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .search-button {
+      background-color: #8a69a1;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .rectangle {
+      background-color: #5B3774;
+      width: 100%;
+      height: 50px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: Arial;
+    }
+
+    .header-button.decks:hover {
+      filter: brightness(140%);
+      transition: transform 0.3s ease;
+      transform: scale(1.15);
+    }
+
+    .header-button.search:hover {
+      filter: brightness(140%);
+      transition: transform 0.3s ease;
+      transform: scale(1.15);
+    }
+
+
+    .header-button.articles:hover {
+      filter: brightness(140%);
+      transition: transform 0.3s ease;
+      transform: scale(1.15);
+    }
+  </style>
+
+<body>
+  <div class="header">
+    <a href="index.html">
+      <img class="header-logo" src="imagens/logo2.png" alt="SurveilTAP Logo">
+    </a>
+    <a href="paginaprocura.html"><button class="header-button search"></button></a>
+    <a href="paginadecks.html"><button class="header-button decks"></button></a>
+    <a href="paginamontedeck.html"><button class="header-button deck-builder"> </button></a>
+    <a href="artg.html" class="header-button">
+      <img src="imagens/artigos.png" alt="" class="header-button articles">
+    </a>
+  </div>
+
+  <div class="centered-content">
+    <div class="search-buttons">
+    </div>
+
+</body>
+
+
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom,#251232, #3f2651);
+    min-height: 100%;
+    background-attachment: fixed;
+  }
+
+  main {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+  }
+
+  section {
+    background-color: #5B3774;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 45%;
+  }
+
+  h2 {
+    margin-top: 0;
+  }
+
+  textarea {
+    width: 100%;
+    height: 200px;
+    resize: none;
+  }
+  #searchInput {
+  width: 95%; /* Faz a barra ocupar quase toda a largura da seção */
+  padding: 12px; /* Aumenta a altura interna e o espaçamento */
+  font-size: 16px; /* Aumenta o tamanho do texto digitado */
+  border-radius: 5px; /* Arredonda as bordas */
+  border: 1px solid #ccc;
+  box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+  margin-bottom: 15px; /* Adiciona um espaço abaixo da barra */
+  }
+
+  .card {
+    width: 30%;
+    margin: 10px;
+    display: inline-block;
+  }
+
+  .card img {
+    border-radius: 5%;
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+  }
+
+  .card:hover img {
+    filter: brightness(110%);
+    transform: scale(1.25);
+  }
+
+  .pagination-controls {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .pagination-controls button {
+    margin: 5px;
+    padding: 5px 10px;
+    background-color: #8A69A1;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  .pagination-controls button:hover {
+    background-color: #da27e3;
+  }
+</style>
+</head>
+
+
+<body>
+  <header>
+    <h1 style="color:white">Deck Builder</h1>
+  </header>
+
+  <main>
+    <section id="searchSection">
+      <h2 style="color: white;">Procure por cards</h2>
+      <input type="text" id="searchInput" placeholder="Escreva algo">
+      <div id="colorFilters">
+
+      </div>
+      <div id="searchResults"></div>
+      <div id="paginationControls" class="pagination-controls"></div>
+    </section>
+
+    <section id="deckSection">
+      <h2 style="color: white;">Deck</h2>
+      <textarea id="deckList" rows="10" cols="50"></textarea>
+      <div id="deckActions">
+        <button id="downloadBtn">Download</button>
+        <button id="copyBtn">Copiar para o Clipboard</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const searchInput = document.getElementById('searchInput');
+      const colorFilters = document.querySelectorAll('.colorFilter');
+      const searchResults = document.getElementById('searchResults');
+      const deckList = document.getElementById('deckList');
+      const manuallyAdded = {};
+      const cardCounts = {};
+      let currentPage = 1;
+      const cardsPerPage = 6;
+
+      searchInput.addEventListener('input', function () {
+        currentPage = 1;
+        searchCards();
+      });
+
+      colorFilters.forEach(filter => {
+        filter.addEventListener('click', function () {
+          filter.classList.toggle('selected');
+          searchCards();
+        });
+      });
+
+      function searchCards() {
+        const query = searchInput.value.trim().toLowerCase();
+        const selectedColors = [...document.querySelectorAll('.colorFilter.selected')].map(filter => filter.dataset.color);
+
+        let apiUrl = 'https://api.scryfall.com/cards/search?q=' + query;
+        if (selectedColors.length > 0) {
+          apiUrl += '&colors=' + selectedColors.join(',');
+        }
+
+        fetch(apiUrl)
+          .then(response => response.json())
+          .then(data => {
+            searchResults.innerHTML = '';
+
+            const startIndex = (currentPage - 1) * cardsPerPage;
+            const endIndex = startIndex + cardsPerPage;
+            const currentCards = data.data.slice(startIndex, endIndex);
+
+            currentCards.forEach(card => {
+              const cardElement = document.createElement('div');
+              cardElement.classList.add('card');
+              const image = document.createElement('img');
+              image.src = card.image_uris.normal;
+              image.alt = card.name;
+              image.addEventListener('click', function () {
+                addToDeck(card.name);
+              });
+              cardElement.appendChild(image);
+              searchResults.appendChild(cardElement);
+            });
+
+            addPaginationControls(data.data.length);
+          })
+          .catch(error => console.error('Error fetching card data:', error));
+      }
+
+      function addPaginationControls(totalCards) {
+        const totalPages = Math.ceil(totalCards / cardsPerPage);
+
+        const paginationDiv = document.getElementById('paginationControls');
+        paginationDiv.innerHTML = '';
+
+        if (totalPages > 1) {
+          if (currentPage > 1) {
+            const previousButton = document.createElement('button');
+            previousButton.textContent = 'Voltar';
+            previousButton.addEventListener('click', function () {
+              currentPage--;
+              searchCards();
+            });
+            paginationDiv.appendChild(previousButton);
+          }
+
+          if (currentPage < totalPages) {
+            const nextButton = document.createElement('button');
+            nextButton.textContent = 'Próximo';
+            nextButton.addEventListener('click', function () {
+              currentPage++;
+              searchCards();
+            });
+            paginationDiv.appendChild(nextButton);
+          }
+        }
+      }
+
+      function addToDeck(cardName, count = 1) {
+        if (manuallyAdded[cardName]) {
+          manuallyAdded[cardName] += count;
+        } else if (cardCounts[cardName]) {
+          cardCounts[cardName] += count;
+        } else {
+          cardCounts[cardName] = count;
+        }
+        updateDeckList();
+      }
+
+      function updateDeckList() {
+        deckList.value = '';
+        for (const cardName in manuallyAdded) {
+          const count = manuallyAdded[cardName];
+          deckList.value += count + ' ' + cardName + '\n';
+        }
+        for (const cardName in cardCounts) {
+          const count = cardCounts[cardName];
+          deckList.value += count + ' ' + cardName + '\n';
+        }
+      }
+
+      // download
+      document.getElementById('downloadBtn').addEventListener('click', function () {
+        const deckText = deckList.value;
+        const blob = new Blob([deckText], {type: 'text/plain'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'decklist.txt';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => {
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        }, 0);
+      });
+
+      document.getElementById('copyBtn').addEventListener('click', function () {
+        deckList.select();
+        document.execCommand('copy');
+        alert('Deck copiada!');
+      });
+    });
+
+
+  </script>
+</body>
+
+</html>

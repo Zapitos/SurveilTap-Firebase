@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - SurveilTAP</title>
+    <style>
+      body {
+        background: linear-gradient(to bottom, #251232, #3f2651);
+        color: white;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .login-container {
+        background-color: #5b3774;
+        padding: 40px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      }
+      #google-signin-btn {
+        background-color: #4285f4;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      #google-signin-btn:hover {
+        background-color: #357ae8;
+      }
+      #user-info {
+        margin-top: 20px;
+        display: none;
+      }
+      #user-info img {
+        border-radius: 50%;
+        margin-bottom: 10px;
+      }
+      #logout-btn {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 14px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: background-color 0.3s;
+      }
+      #logout-btn:hover {
+        background-color: #c82333;
+      }
+      .back-button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <h1>Login</h1>
+      <div id="user-info">
+        <img id="user-pic" src="" alt="User Profile Picture" />
+        <p id="user-name"></p>
+      </div>
+      <button id="google-signin-btn">Sign in with Google</button>
+      <button id="logout-btn" style="display: none">Logout</button>
+      <button class="back-button" onclick="window.location.href='index.html'">
+        Back to Home
+      </button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+
+    <script>
+      // Import the functions you need from the SDKs you need
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyBLXd8074snnWfIOkIL0r40guMyRCRycZ0",
+        authDomain: "surveiltap.firebaseapp.com",
+        projectId: "surveiltap",
+        storageBucket: "surveiltap.firebasestorage.app",
+        messagingSenderId: "299436234433",
+        appId: "1:299436234433:web:5ce238879b52abfa6e6640",
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+      const provider = new firebase.auth.GoogleAuthProvider();
+
+      const googleSignInBtn = document.getElementById("google-signin-btn");
+      const logoutBtn = document.getElementById("logout-btn");
+      const userInfoDiv = document.getElementById("user-info");
+      const userPic = document.getElementById("user-pic");
+      const userName = document.getElementById("user-name");
+
+      googleSignInBtn.addEventListener("click", () => {
+        auth
+          .signInWithPopup(provider)
+          .then((result) => {
+            const user = result.user;
+            updateUI(user);
+          })
+          .catch((error) => {
+            console.error("Authentication error: ", error);
+          });
+      });
+
+      logoutBtn.addEventListener("click", () => {
+        auth.signOut().then(() => {
+          updateUI(null);
+        });
+      });
+
+      auth.onAuthStateChanged((user) => {
+        updateUI(user);
+      });
+
+      function updateUI(user) {
+        if (user) {
+          userInfoDiv.style.display = "block";
+          userPic.src = user.photoURL;
+          userName.textContent = user.displayName;
+          googleSignInBtn.style.display = "none";
+          logoutBtn.style.display = "block";
+        } else {
+          userInfoDiv.style.display = "none";
+          googleSignInBtn.style.display = "block";
+          logoutBtn.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>
