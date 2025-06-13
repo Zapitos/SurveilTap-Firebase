@@ -14,7 +14,7 @@ const server = http.createServer((req, res) => {
   let filePath = req.url === "/" ? "/index.html" : req.url;
 
   // Constrói o caminho completo para o arquivo no seu computador.
-  let fullPath = path.join(__dirname, filePath);
+  let fullPath = path.join(__dirname, "build", filePath);
 
   // Tenta ler o arquivo solicitado
   fs.readFile(fullPath, (err, content) => {

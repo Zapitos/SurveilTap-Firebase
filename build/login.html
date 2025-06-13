@@ -109,12 +109,28 @@
       const userPic = document.getElementById("user-pic");
       const userName = document.getElementById("user-name");
 
+      // DE:
       googleSignInBtn.addEventListener("click", () => {
         auth
           .signInWithPopup(provider)
           .then((result) => {
             const user = result.user;
             updateUI(user);
+          })
+          .catch((error) => {
+            console.error("Authentication error: ", error);
+          });
+      });
+
+      // PARA:
+      googleSignInBtn.addEventListener("click", () => {
+        auth
+          .signInWithPopup(provider)
+          .then((result) => {
+            const user = result.user;
+            updateUI(user);
+            // ADICIONE ESTA LINHA PARA REDIRECIONAR
+            window.location.href = "index.html";
           })
           .catch((error) => {
             console.error("Authentication error: ", error);

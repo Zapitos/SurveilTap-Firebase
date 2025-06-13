@@ -237,9 +237,11 @@
         <a href="artg.html">
           <button class="header-button art-botao"></button>
         </a>
-        <a href="login.html">
-          <button class="header-button">Login</button>
-        </a>
+        <div id="auth-container">
+          <a href="login.html">
+            <button class="header-button">Login</button>
+          </a>
+        </div>
       </div>
     </div>
 
@@ -279,13 +281,68 @@
     <p>‎</p>
     <p>‎</p>
 
+    ...
+    <p>‎</p>
+    <p>‎</p>
+
     <script>
+      // <-- SEU SCRIPT ANTIGO E ORIGINAL
       window.addEventListener("scroll", function () {
         var square = document.querySelector(".rectangle");
         if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
           square.style.display = "flex";
         } else {
           square.style.display = "none";
+        }
+      });
+    </script>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+
+    <script>
+      // 1. Sua configuração do Firebase (a mesma do login.html)
+      const firebaseConfig = {
+        apiKey: "AIzaSyBLXd8074snnWfIOkIL0r40guMyRCRycZ0",
+        authDomain: "surveiltap.firebaseapp.com",
+        projectId: "surveiltap",
+        storageBucket: "surveiltap.firebasestorage.app",
+        messagingSenderId: "299436234433",
+        appId: "1:299436234433:web:5ce238879b52abfa6e6640",
+      };
+
+      // 2. Inicializa o Firebase
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+
+      // 3. Pega o container de autenticação que criamos no HTML
+      const authContainer = document.getElementById("auth-container");
+
+      // 4. Função que será chamada quando o usuário clicar em "Sair"
+      function logout() {
+        auth.signOut();
+      }
+
+      // 5. A MÁGICA ACONTECE AQUI: O Firebase verifica o estado do login
+      //    e atualiza a página de acordo.
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          // Se o USUÁRIO ESTÁ LOGADO:
+          // Mostra a foto, o nome e o botão de sair.
+          authContainer.innerHTML = `
+          <div style="display: flex; align-items: center; color: white; font-family: Arial, sans-serif;">
+            <img src="${user.photoURL}" alt="Foto do Usuário" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;">
+            <button onclick="logout()" style="background: none; border: none; color: #ffbaba; cursor: pointer; margin-left: 15px; font-size: 14px;">Sair</button>
+          </div>
+          `;
+        } else {
+          // Se o USUÁRIO NÃO ESTÁ LOGADO:
+          // Mostra o botão de Login original.
+          authContainer.innerHTML = `
+                    <a href="login.html">
+                        <button class="header-button" style="color: white; border: 1px solid white; padding: 5px 10px; border-radius: 5px;">Login</button>
+                    </a>
+                `;
         }
       });
     </script>

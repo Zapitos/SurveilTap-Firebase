@@ -8,10 +8,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "build": "cpx \"*.html\" build && cpx \"imagens/**/*\" build/imagens"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "cpx": "^1.5.0"
+  }
 }
